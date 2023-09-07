@@ -51,11 +51,13 @@ class InteractiveShowerMasking:
                 The name of the input file
         """
         
-        self.fname = fname
-        self.rate = False
+        self.fname = fname # File name from class instantiation
+        
+        self.rate = False # Flag for whether the input is "rate" or "rate_ints" data
 
         self.get_data(fname) # Read in the data 
         
+        # Create the Tkinter app
         self.root = tk.Tk()
         self.root.title("Interactive Shower Masking")
         
@@ -196,6 +198,7 @@ class InteractiveShowerMasking:
         
         self.head = self.hdu[0].header
         
+        # Check if data is output from RAMP_FIT step
         if 'S_RAMP' in self.head.keys():
             self.rate = True
             
@@ -417,7 +420,6 @@ class InteractiveShowerMasking:
 
             # Add the ellipse to the first group and each subsequent group
             # in a single integration.
-            #for i in range(integration,self.data.shape[0]):
             
             ndims = len(self.data.shape)
             if ndims == 4:
