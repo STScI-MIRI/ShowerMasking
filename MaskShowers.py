@@ -440,10 +440,11 @@ class InteractiveShowerMasking:
                         mask[g] += e(x,y)
                             
             else:
+                y,x = np.mgrid[0:self.data.shape[-2],0:self.data.shape[-1]]
                 mask += e(x,y)
             
         # Set mask locations to 4 in DQ array ("JUMP")
-        self.dq[mask == 1] = 4
+        self.dq[mask >= 1] = 4
         
     def save_new_fits(self):
         """Update the DQ array and save the data to a new .fits file."""
